@@ -36,4 +36,6 @@ git clone https://github.com/google-coral/aiy-maker-kit.git
 cd aiymakerkit
 
 python3 -m pip install .
+
+download models - https://coral.ai/models/object-detection/
 ```
