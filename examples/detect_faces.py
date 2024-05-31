@@ -1,32 +1,26 @@
-# Copyright 2021 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     https://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 """
-Performs continuous face detection with the camera.
+Performs continuous object detection with the camera.
 
-Simply run the script and it will draw boxes around detected faces:
+Simply run the script and it will draw boxes around detected objects along
+with the predicted labels:
 
-    python3 detect_faces.py
+    python3 detect_objects.py
 
 For more instructions, see g.co/aiy/maker
 """
 
 from aiymakerkit import vision
+#from aiymakerkit import utils
 import models
+from pycoral.utils.dataset import read_label_file
 
-detector = vision.Detector(models.FACE_DETECTION_MODEL)
+#detector = vision.Detector(models.OBJECT_DETECTION_MODEL)
+detector = vision.Detector('models/mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite')
 
-for frame in vision.get_frames():
-    faces = detector.get_objects(frame, threshold=0.1)
-    vision.draw_objects(frame, faces)
+#labels = utils.read_labels_from_metadata(models.OBJECT_DETECTION_MODEL)
+labels = read_label_file('models/coco_labels.txt')
+
+
+for frame in vision.get_frames(size=(640,480),capture_device_index=1):
+    objects = detector.get_objects(frame, threshold=0.5)
+    vision.draw_objects(frame, objects, labels)
