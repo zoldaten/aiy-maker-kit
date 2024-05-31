@@ -20,20 +20,6 @@ It includes complete setup instructions with a Raspberry Pi, project tutorials,
 and the **[aiymakerkit API reference](https://aiyprojects.withgoogle.com/maker/#reference)**.
 
 
-## Install on Raspberry Pi OS
-
-If you're on a Raspberry Pi, we recommend you flash our custom Raspberry Pi OS
-system image before installing this library, as documented at
-https://aiyprojects.withgoogle.com/maker/. That way, you're sure to have
-all the required software installed and there should be no trouble.
-
-But if you want to do things differently and can tolerate some extra steps and risk troubleshooting,
-you can build our system image yourself and/or install the required libraries
-on an existing RPI OS system as documented at
-https://github.com/google-coral/aiy-maker-kit-tools (but we
-do not recommend it).
-
-
 ## Install manually
 
 For other situations where you want to install only the `aiymakerkit` library,
